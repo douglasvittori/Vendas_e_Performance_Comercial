@@ -2,6 +2,8 @@
 
 Este projeto apresenta uma análise detalhada das **vendas, lucratividade e performance de produtos** em uma empresa do setor de bicicletas. Utilizando o Power BI, criei visualizações interativas e indicadores financeiros que facilitam a tomada de decisões estratégicas.
 
+[🔗 Acesse o Dashboard Publicado no Power BI](https://app.powerbi.com/view?r=eyJrIjoiYmU3ZDRjMGMtZTg3NS00NDc3LTg1ZjgtOGU2YTgxZTI1Y2QzIiwidCI6ImUyYmViMmFiLTliZjctNDYyZC1hZDMxLWE3NjJkMmNkZGVhNiJ9)
+
 ---
 
 ## 🎯 Objetivo
