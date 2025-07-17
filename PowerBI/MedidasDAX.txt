@@ -1,0 +1,69 @@
+# Medidas DAX e Tabelas Calculadas Usadas no Projeto
+
+
+# 1. Análise de KPIs: Faturamento, Custo e Margem
+
+Total_Vendas = SUM(TB_VENDAS[Preco_Unitario])
+
+Lucro_Bruto = [Total_Vendas] - [Total_Custo]
+
+Total_Custo = sum(TB_VENDAS[Custo_Frete])
+
+%_Margem_Lucro = ROUND(DIVIDE([Lucro_Bruto], [Total_Vendas], 0) * 100, 5)
+
+
+--------------------------------------------
+
+
+
+# 2. Vendas por Produto, Categoria e Subcategoria
+
+Top5ProdutosPeso = TOPN(5, TB_PRODUTO,  CALCULATE(MAX(TB_PRODUTO[Peso_Produto])))
+
+Top3CategoriasVendas = TOPN(3, SUMMARIZE(TB_PRODUTO_CATEGORIA, TB_PRODUTO_CATEGORIA[Nome_Categoria], "Total", SUM(TB_VENDAS[Preco_Unitario])), [Total])
+
+Top10ProdutosUnidadesVendidas = TOPN(10, SUMMARIZE(TB_PRODUTO, TB_PRODUTO[Nome_Produto], "Quantidade", SUM(TB_VENDAS[Quantidade_Venda])), [Quantidade])
+
+Top3SubCategoriasVendas = TOPN(3, SUMMARIZE(TB_PRODUTO_SUBCATEGORIA, TB_PRODUTO_SUBCATEGORIA[Nome_Subcategoria], "Total", SUM(TB_VENDAS[Preco_Unitario])), [Total])
+
+
+--------------------------------------------
+
+
+# 3. Resumo de Faturamento, Lucro e Preço Médio
+
+Total_Vendas = SUM(TB_VENDAS[Preco_Unitario])
+
+Total_Custo = SUM(TB_VENDAS[Custo_Frete])
+
+Lucro_Bruto = [Total_Vendas] - [Total_Custo]
+
+# 4. Evolução Anual de Vendas por Produto
+
+TituloGrafico = IF(SELECTEDVALUE(TB_PRODUTO[Nome_Produto]) = BLANK(), "Total Geral", "Total de Quantidade Vendida Para o Produto: " & SELECTEDVALUE(TB_PRODUTO[Nome_Produto]))
+
+Total_Vendas = SUM(TB_VENDAS[Preco_Unitario])
+
+
+--------------------------------------------
+
+
+# 5. Ranking do Total de Vendas por Subcategoria
+
+Ranking = RANKX(ALL(TB_PRODUTO_SUBCATEGORIA), SUMX(RELATEDTABLE(TB_VENDAS), TB_VENDAS[Total_Vendas]), ,DESC)
+
+Total_Vendas = SUM(TB_VENDAS[Preco_Unitario])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
